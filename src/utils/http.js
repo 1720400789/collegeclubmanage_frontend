@@ -3,7 +3,7 @@ import axios from "axios"
 
 //1.接口基地址和接口超时时间的封装
 const httpInstance = axios.create({
-    baseURL: 'http://pcapi-xiaotuxian-front-devtest.itheima.net',
+    baseURL: 'http://localhost:8080',
     timeout: 5000
 })
 
@@ -12,7 +12,7 @@ httpInstance.interceptors.request.use(config => {
     return config
 }, e => Promise.reject(e))
 
-// 3.axios响应式拦截器
+// 3.axios响应拦截器
 httpInstance.interceptors.response.use(res => res.data, e => {
     return Promise.reject(e)
 })

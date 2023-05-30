@@ -1,21 +1,33 @@
+//createRouter：创建router实例对象
+//createWebHistory：创建history模式的路由
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import MemberLogin from '@/views/front/login/index.vue'
+import ManagerLogin from '@/views/backend/login/index.vue'
+import Front from '@/views/front/layout/index.vue'
+import FrontHome from '@/views/front/home/index.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
-    {
+    {//用户登录为一级路由，路径为空表示项目启动即进入登录页
       path: '/',
-      name: 'home',
-      component: HomeView
+      component: MemberLogin
     },
-    {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/AboutView.vue')
+    {//管理员登录为一级路由
+      path: '/backend',
+      component: ManagerLogin
+    },
+    {//用户首页为一级路由，预备在首页有head，body和foot，body设置为二级路由，参考acwing 网站，无论去哪个交互页面，head和footer是不变的，使body改变
+      //我们一级路由放共同组件如head和footer
+      path: '/front',
+      component: Front,
+      children: [
+        {
+          path: '',
+          component: FrontHome
+        },
+
+      ]
     }
   ]
 })
