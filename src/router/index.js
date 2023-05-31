@@ -5,6 +5,8 @@ import MemberLogin from '@/views/front/login/index.vue'
 import ManagerLogin from '@/views/backend/login/index.vue'
 import Front from '@/views/front/layout/index.vue'
 import FrontHome from '@/views/front/home/index.vue'
+import Backend from '@/views/backend/layout/index.vue'
+import BacendHome from '@/views/backend/home/index.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -14,7 +16,7 @@ const router = createRouter({
       component: MemberLogin
     },
     {//管理员登录为一级路由
-      path: '/backend',
+      path: '/login',
       component: ManagerLogin
     },
     {//用户首页为一级路由，预备在首页有head，body和foot，body设置为二级路由，参考acwing 网站，无论去哪个交互页面，head和footer是不变的，使body改变
@@ -27,6 +29,16 @@ const router = createRouter({
           component: FrontHome
         },
 
+      ]
+    },
+    {
+      path: '/backend',
+      component: Backend,
+      children: [
+        {
+          path: '',
+          component: BacendHome
+        },
       ]
     }
   ]
