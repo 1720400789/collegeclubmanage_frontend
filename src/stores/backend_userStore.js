@@ -26,4 +26,6 @@ export const useBackUserStore = defineStore('backenduser', () => {
         admin_flag,
         getUserInfo
     }
+},{
+    persist: true,
 })

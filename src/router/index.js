@@ -6,7 +6,8 @@ import ManagerLogin from '@/views/backend/login/index.vue'
 import Front from '@/views/front/layout/index.vue'
 import FrontHome from '@/views/front/home/index.vue'
 import Backend from '@/views/backend/layout/index.vue'
-import BacendHome from '@/views/backend/home/index.vue'
+import ManageClub from '@/views/backend/home/ManageClub.vue'
+import AdminIden from '@/views/backend/home/AdminIden.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -37,8 +38,12 @@ const router = createRouter({
       children: [
         {
           path: '',
-          component: BacendHome
+          component: ManageClub
         },
+        {
+          path: '/iden',
+          component: AdminIden
+        }
       ]
     }
   ]

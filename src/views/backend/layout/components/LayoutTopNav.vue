@@ -1,24 +1,59 @@
-<script>
-// import { UserFilled } from '@element-plus/icons-vue'
+<script setup>
+import { ref } from "vue";
+import { useRouter } from 'vue-router'
+import { ElMessageBox, ElMessage } from 'element-plus'
+import { useBackUserStore } from '@/stores/backend_userStore'
+import {storeToRefs} from "pinia";
+const router = useRouter()
+const userStore = useBackUserStore()
+const { username } = storeToRefs(userStore)
+
+const logout = () => {
+  ElMessageBox.confirm(
+      '确定要退出系统吗',
+      'Warning',
+      {
+        confirmButtonText: 'OK',
+        cancelButtonText: 'Cancel',
+        type: 'warning',
+      }
+  ).then(() => {
+        localStorage.removeItem('userInfo')
+        localStorage.removeItem('userInfo_pwd')
+        // 2. 跳转首页
+        router.replace({ path: '/login' })
+        ElMessage({
+          type: 'success',
+          message: '退出成功',
+        })
+      })
+      .catch(() => {
+        router.replace({ path: '/backend' })
+        ElMessage({
+          type: 'info',
+          message: '已取消',
+        })
+      })
+}
 </script>
 
 <template>
   <el-menu
-      :default-active="activeIndex"
+      router
+      :default-active="$route.path"
       class="el-menu-demo"
       mode="horizontal"
       :ellipsis="false"
-      @select="handleSelect"
   >
     <el-menu-item index="0" class="title-header">高校社团管理系统</el-menu-item>
     <div class="flex-grow" />
-    <!--    <el-menu-item index="1">Processing Center</el-menu-item>-->
-    <el-sub-menu index="2">
+    <el-sub-menu index="1">
       <template #title>
-        <el-icon><UserFilled /></el-icon>Admin
+        <el-icon><User /></el-icon>
+        {{ username }}
       </template>
-      <el-menu-item index="2-1">用户信息</el-menu-item>
-      <el-menu-item index="2-2">退出系统</el-menu-item>
+      <el-menu-item index="/iden">用户信息</el-menu-item>
+      <el-menu-item index="/1-2" @click="logout">退出系统</el-menu-item>
       <!--      <el-menu-item index="2-3">item three</el-menu-item>-->
       <!--      <el-sub-menu index="2-4">-->
       <!--        <template #title>item four</template>-->

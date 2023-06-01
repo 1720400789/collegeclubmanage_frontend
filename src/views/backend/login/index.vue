@@ -1,13 +1,12 @@
 <script setup>
 // 表单校验（账号名+密码）
 
-import { ref } from 'vue'
+import {onMounted, ref} from 'vue'
 import { ElMessage } from 'element-plus'
 import 'element-plus/theme-chalk/el-message.css'
 import { useRouter } from 'vue-router'
 import { useBackUserStore } from '@/stores/backend_userStore'
 import {storeToRefs} from "pinia";
-import { ArrowRight } from '@element-plus/icons-vue'
 
 const userStore = useBackUserStore()
 
@@ -15,7 +14,7 @@ const userStore = useBackUserStore()
 const form = ref({
   account: '',
   password: '',
-  // agree: true
+  agree: true
 })
 
 // 2. 准备规则对象
@@ -58,11 +57,18 @@ const doLogin = () => {
     if (valid) {
       // TODO LOGIN
       await userStore.getUserInfo({ account, password })
-      console.log(user_res.value.data.flag)
+      console.log(user_res.value.data)
       if(String(user_res.value.code) === '1'){
+        if(form.value.agree == true){
+          localStorage.setItem('userInfo_pwd',JSON.stringify(user_res.value.data.password))
+        }else{
+          localStorage.removeItem('userInfo_pwd')
+        }
+
         // 1. 提示用户
         ElMessage({ type: 'success', message: '登录成功' })
-        localStorage.setItem('userInfo',JSON.stringify(user_res.data))
+        localStorage.setItem('userInfo',JSON.stringify(user_res.value.data.account))
+        // console.log(user_res.value.data)
         if(user_res.value.data.flag == 0){
           //管理员老师
           admin_flag.value = "管理员"
@@ -82,6 +88,24 @@ const doLogin = () => {
     }
   })
 }
+
+const id_mount = () => {
+  if(localStorage.getItem('userInfo')){
+    const admInfo = JSON.parse(localStorage.getItem('userInfo'))
+    console.log(admInfo)
+    form.value.account = admInfo
+    if(localStorage.getItem('userInfo_pwd')){
+      form.value.password = JSON.parse(localStorage.getItem('userInfo_pwd'))
+    }
+  }else{
+    console.log("没有本地存储")
+  }
+}
+
+onMounted(() => {
+  console.log("已执行初始化")
+  id_mount()
+})
 
 // 1. 用户名和密码 只需要通过简单的配置（看文档的方式 - 复杂功能通过多个不同组件拆解）
 // 2. 同意协议  自定义规则  validator:(rule,value,callback)=>{}
@@ -121,11 +145,11 @@ const doLogin = () => {
               <el-form-item prop="password" label="密码">
                 <el-input v-model="form.password" />
               </el-form-item>
-<!--              <el-form-item prop="agree" label-width="22px">-->
-<!--                <el-checkbox size="large" v-model="form.agree">-->
-<!--                  我已同意隐私条款和服务条款-->
-<!--                </el-checkbox>-->
-<!--              </el-form-item>-->
+              <el-form-item prop="agree" label-width="22px">
+                <el-checkbox size="large" v-model="form.agree">
+                  记住密码
+                </el-checkbox>
+              </el-form-item>
               <el-button size="large" class="subBtn" @click="doLogin">点击登录</el-button>
             </el-form>
           </div>
