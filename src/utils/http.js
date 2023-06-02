@@ -10,6 +10,10 @@ const httpInstance = axios.create({
 
 // 2.axios请求拦截器
 httpInstance.interceptors.request.use(config => {
+    let uToken = localStorage.getItem('userId')
+    if(uToken){
+        config.headers['u-token'] = uToken
+    }
     return config
 }, e => Promise.reject(e))
 
@@ -19,8 +23,9 @@ httpInstance.interceptors.response.use(res => {
     if(res.data.code === 0 && res.data.msg === 'NOTLOGIN'){//未登录则返回登录页面
         console.log('未登录')
         localStorage.removeItem('userInfo')//未登录则清楚本地存储的用户信息
-        router.push({ path: '/' })
+        router.push({ path: '/login' })
     }else {
+        console.log('已登录')
         return res.data
     }
 }, e => {

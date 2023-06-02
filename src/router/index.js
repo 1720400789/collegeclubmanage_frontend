@@ -8,6 +8,8 @@ import FrontHome from '@/views/front/home/index.vue'
 import Backend from '@/views/backend/layout/index.vue'
 import ManageClub from '@/views/backend/home/ManageClub.vue'
 import AdminIden from '@/views/backend/home/AdminIden.vue'
+import ManageAdmin from '@/views/backend/home/MangeAdmin.vue'
+import ManageAdminAdd from '@/views/backend/home/MangeAdmin_add.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -43,6 +45,14 @@ const router = createRouter({
         {
           path: '/iden',
           component: AdminIden
+        },
+        {
+          path: '/manageadmin',
+          component: ManageAdmin
+        },
+        {
+          path: '/manageadmin_add',
+          component: ManageAdminAdd
         }
       ]
     }

@@ -57,7 +57,7 @@ const doLogin = () => {
     if (valid) {
       // TODO LOGIN
       await userStore.getUserInfo({ account, password })
-      console.log(user_res.value.data)
+      // console.log(user_res.value.data)
       if(String(user_res.value.code) === '1'){
         if(form.value.agree == true){
           localStorage.setItem('userInfo_pwd',JSON.stringify(user_res.value.data.password))
@@ -68,15 +68,17 @@ const doLogin = () => {
         // 1. 提示用户
         ElMessage({ type: 'success', message: '登录成功' })
         localStorage.setItem('userInfo',JSON.stringify(user_res.value.data.account))
+        localStorage.setItem('userId', user_res.value.data.id)
         // console.log(user_res.value.data)
         if(user_res.value.data.flag == 0){
           //管理员老师
           admin_flag.value = "管理员"
+          router.replace({ path: '/manageadmin' })
         }else {
           admin_flag.value = "社团负责人"
+          // 2. 跳转首页
+          router.replace({ path: '/backend' })
         }
-        // 2. 跳转首页
-        router.replace({ path: '/backend' })
       }
       else if(user_res.value.msg === '账号已禁用'){
         //提醒账号密码不匹配或被禁用

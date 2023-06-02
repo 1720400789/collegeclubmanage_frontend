@@ -19,6 +19,7 @@ const logout = () => {
       }
   ).then(() => {
         localStorage.removeItem('userInfo')
+        localStorage.removeItem('userId')
         localStorage.removeItem('userInfo_pwd')
         // 2. 跳转首页
         router.replace({ path: '/login' })

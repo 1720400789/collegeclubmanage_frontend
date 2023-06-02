@@ -1,8 +1,8 @@
 [
   {
-    "text": "首页",
+    "text": "管理人员",
     "icon": "HomeFilled",
-    "path": "/chair_1"
+    "path": "/manageadmin"
   },
   {
     "text": "社团管理",
