@@ -1,40 +1,16 @@
 [
   {
-    "text": "首页",
-    "icon": "HomeFilled",
-    "path": "/login"
-  },
-  {
     "text": "社团管理",
     "icon": "Menu",
     "children": [
-      {"text": "社团信息","icon": "Grid","path": "/club_basic_l1"},
-      {"text": "社团成员","icon": "HelpFilled","path": "/club_basic_l2"},
-      {"text": "社团部门情况","icon": "Promotion","path": "/club_basic_l3"}
+      {"text": "社团信息","icon": "Grid","path": "/backend"},
+      {"text": "审核申请","icon": "Promotion","path": "/chairmanage_apply"}
     ]
   },
   {
     "text": "活动管理",
     "icon": "EditPen",
-    "children": [
-      {
-        "text": "社团活动",
-        "icon": "Grid",
-        "grandChildren": [
-          {
-            "text": "正在进行",
-            "icon": "DataLine",
-            "path": "/club_activ_l1"
-          },
-          {
-            "text": "历史活动",
-            "icon": "More",
-            "path": "/club_activ_l2"
-          }
-        ]
-      },
-      {"text": "活动申请","icon": "FirstAidKit","path": "/club_activ_l3"}
-    ]
+    "path": "/manageevent"
   },
   {
     "text": "资讯管理",

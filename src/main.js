@@ -18,3 +18,4 @@ for (let i in Icons) {
 }
 
 app.mount('#app')
+localStorage.removeItem('loginData')

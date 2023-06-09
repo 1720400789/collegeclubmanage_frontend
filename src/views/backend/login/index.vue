@@ -6,8 +6,9 @@ import { ElMessage } from 'element-plus'
 import 'element-plus/theme-chalk/el-message.css'
 import { useRouter } from 'vue-router'
 import { useBackUserStore } from '@/stores/backend_userStore'
-import {storeToRefs} from "pinia";
+import {storeToRefs} from "pinia"
 
+const hidePassword = ref(true)
 const userStore = useBackUserStore()
 
 // 1. 准备表单对象
@@ -60,7 +61,7 @@ const doLogin = () => {
       // console.log(user_res.value.data)
       if(String(user_res.value.code) === '1'){
         if(form.value.agree == true){
-          localStorage.setItem('userInfo_pwd',JSON.stringify(user_res.value.data.password))
+          localStorage.setItem('userInfo_pwd',JSON.stringify(form.value.password))
         }else{
           localStorage.removeItem('userInfo_pwd')
         }
@@ -145,7 +146,7 @@ onMounted(() => {
                 <el-input v-model="form.account" />
               </el-form-item>
               <el-form-item prop="password" label="密码">
-                <el-input v-model="form.password" />
+                <el-input v-model="form.password" show-password :password="hidePassword" @password-toggle="hidePassword = !hidePassword"/>
               </el-form-item>
               <el-form-item prop="agree" label-width="22px">
                 <el-checkbox size="large" v-model="form.agree">

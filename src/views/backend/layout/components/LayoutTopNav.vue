@@ -46,7 +46,7 @@ const logout = () => {
       mode="horizontal"
       :ellipsis="false"
   >
-    <el-menu-item index="0" class="title-header">高校社团管理系统</el-menu-item>
+    <el-menu-item index="/" class="title-header">高校社团管理系统</el-menu-item>
     <div class="flex-grow" />
     <el-sub-menu index="1">
       <template #title>

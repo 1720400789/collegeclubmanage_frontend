@@ -11,8 +11,12 @@ const httpInstance = axios.create({
 // 2.axios请求拦截器
 httpInstance.interceptors.request.use(config => {
     let uToken = localStorage.getItem('userId')
+    let token = localStorage.getItem('u_Id')
     if(uToken){
         config.headers['u-token'] = uToken
+    }
+    if(token){
+        config.headers['utoken'] = token
     }
     return config
 }, e => Promise.reject(e))

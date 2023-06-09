@@ -29,6 +29,7 @@ const getData = async () => {
   await getAdminPageAPI(params).then(response => {
         userData.value = response.data.records
         total.value = response.data.total
+        console.log(userData.value)
         // console.log(currentPage.value+'a')
       })
       .catch(error => {
@@ -224,8 +225,13 @@ const statusHandle = async (flag, id) => {
       <el-table-column type="selection" width="30"/>
       <el-table-column prop="name" label="姓名"></el-table-column>
       <el-table-column prop="account" label="用户名" sortable></el-table-column>
+<!--      <el-table-column prop="password" label="密码"></el-table-column>-->
       <el-table-column prop="phone" label="联系电话"></el-table-column>
-      <el-table-column prop="status" label="状态" sortable></el-table-column>
+      <el-table-column prop="status" label="状态" sortable>
+        <template #default="scope">
+          <span style="margin-right: 10px">{{ scope.row.status == '0' ? '封禁' : '正常' }}</span>
+        </template>
+      </el-table-column>
       <el-table-column label="操作" min-width="180">
         <template #default="{ row }">
           <el-button type="danger" size="small" :icon="Delete" @click="statusHandle('0', row.id)" v-if="row.status == 0">解封</el-button>
