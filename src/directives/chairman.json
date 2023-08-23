@@ -8,27 +8,16 @@
     ]
   },
   {
-    "text": "活动管理",
+    "text": "活动事务",
     "icon": "EditPen",
-    "path": "/manageevent"
-  },
-  {
-    "text": "资讯管理",
-    "icon": "Postcard",
     "children": [
-      {"text": "历史资讯","icon": "ScaleToOriginal","path": "/club_news_l1"},
-      {"text": "发布资讯","icon": "DocumentAdd","path": "/club_news_l2"},
-      {"text": "资讯留言","icon": "ChatLineSquare","path": "/club_news_l3"}
+      {"text": "活动管理","icon": "ScaleToOriginal","path": "/manageevent"},
+      {"text": "审批申请","icon": "DocumentAdd","path": "/manageuserforevent"}
     ]
   },
   {
-    "text": "申请审核",
-    "icon": "InfoFilled",
-    "path": "/club_apply"
-  },
-  {
-    "text": "我的信息",
+    "text": "发布通知",
     "icon": "Message",
-    "path": "/club_myself"
+    "path": "/manageNotice"
   }
 ]

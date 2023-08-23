@@ -73,12 +73,6 @@ const rules = {
   ],
   name: [
     { required: true, message: '姓名不能为空', trigger: 'blur'}
-  ],
-  birthTime: [
-    { required:true, trigger:'blur'}
-  ],
-  birthMan: [
-    { required: true, message: '建立人不能为空', trigger: 'blur' }
   ]
 }
 

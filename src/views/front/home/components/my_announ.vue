@@ -37,7 +37,7 @@ const getEvent = async () => {
       announcements.value = res.data || []
       console.log(announcements.value)
     }else {
-      ElMessage.warning("没有数据")
+      ElMessage.warning(res.msg || "没有数据")
     }
   }).catch(err => {
     console.log(err)

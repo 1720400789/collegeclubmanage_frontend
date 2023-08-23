@@ -1,6 +1,6 @@
 //axios基础的封装，如：接口基地址、接口超时时间、请求拦截器和响应拦截器
 import axios from "axios"
-import {ElMessage} from "element-plus";
+import {ElMessage} from "element-plus"
 import router from "@/router"
 //1.接口基地址和接口超时时间的封装
 const httpInstance = axios.create({

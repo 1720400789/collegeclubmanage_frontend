@@ -184,14 +184,13 @@ const dialogOk = async () => {
       }else {
         const params = {
           id: tableform.value.id,
-          clubName: tableform.value.clubName,
           eventname: tableform.value.eventname,
           eventDescription: tableform.value.eventDescription,
           startTime: tableform.value.startTime,
           endTime: tableform.value.endTime,
           spot: tableform.value.spot
         }
-        await editEventAPI(params.id, params.clubName, params.eventname, params.eventDescription, params.startTime, params.endTime, params.spot).then(res => {
+        await editEventAPI(params.id, params.eventname, params.eventDescription, params.startTime, params.endTime, params.spot).then(res => {
           if(res.code === 1){
             ElMessage.success('修改信息成功！')
             getData();

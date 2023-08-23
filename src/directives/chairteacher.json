@@ -12,18 +12,7 @@
     "icon": "Menu",
     "children": [
       {"text": "社团信息","icon": "Grid","path": "/manage_clubiden"},
-      {"text": "发布通知","icon": "HelpFilled","path": "/chair_2_2"},
       {"text": "社团审批","icon": "Promotion","path": "/manageapply_club"}
-    ]
-  },
-  {
-    "text": "栏目管理",
-    "icon": "EditPen",
-    "children": [
-      {"text": "广告栏管理","icon": "Grid","path": "/chair_3_1"},
-      {"text": "公告栏管理","icon": "HelpFilled","path": "/chair_3_2"},
-      {"text": "活动区管理","icon": "Promotion","path": "/chair_3_3"},
-      {"text": "留言板管理","icon": "Promotion","path": "chair_3_4"}
     ]
   },
   {
@@ -32,8 +21,8 @@
     "path": "/manageapply_event"
   },
   {
-    "text": "创立社团",
-    "icon": "HomeFilled",
-    "path": "chair_5"
+    "text": "发布通知",
+    "icon": "HelpFilled",
+    "path": "/topmanageNotice"
   }
 ]

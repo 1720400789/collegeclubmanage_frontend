@@ -2,9 +2,8 @@
 //导入图标组件，虽已全局导入所有图标，但绑定图标，还需单独导入
 import { Delete,Edit,Search } from '@element-plus/icons-vue'
 //定义用户信息数据
-import axios from 'axios'
-import {ref, onMounted, computed} from 'vue'
-import {ElMessage, ElMessageBox} from "element-plus";
+import {ref, onMounted} from 'vue'
+import {ElMessage} from "element-plus";
 import { getAdminPageAPI, editStatusAPI } from "@/apis/backend_user";
 import {useRouter} from "vue-router";
 
@@ -70,50 +69,6 @@ const handleAdd = (st) => {
     query: st
   })
 }
-
-//处理弹窗确认按钮点击事件
-// const dialogFormVisible = ref(false)//设置弹窗不显示
-// const tableform = ref({})//弹窗表单数据
-// const dialogType = ref('add')//初始化弹出框的类型为增加弹窗
-// //设置弹窗的标题
-// const dialogTitle = computed(() => {
-//   return dialogType.value === 'add' ? '新增数据' : '编辑数据'
-// })
-// const dialogOk = () => {
-//   dialogFormVisible.value = false
-//   if (dialogType.value === 'add') {
-//     const newUser = { ...tableform.value }
-//     console.log(newUser)
-//     axios.post('http://localhost:8080/user', newUser)
-//         .then(response => {// 处理成功响应
-//           ElMessage({type: 'success',message: '添加成功!',})
-//           getData(); // 在添加数据后调用获取数据的方法
-//         })
-//         .catch(error => {// 处理错误
-//           console.log(error);
-//         });
-//   }else {
-//     const userId = tableform.value.id;
-//     const updatedUser = { ...tableform.value };
-//     axios.put(`http://localhost:8080/user/${userId}`, updatedUser)
-//         .then(response => {
-//           // 处理成功响应
-//           ElMessage({type: 'success',message: '修改成功!',})
-//           getData();
-//         })
-//         .catch(error => {
-//           // 处理错误
-//           console.error('用户更新失败');
-//           console.error(error);
-//         });
-//   }
-// }
-// function handleEdit(row) {// 处理编辑按钮点击事件
-//   dialogFormVisible.value = true
-//   tableform.value = {...row}
-//   dialogType.value = 'edit'
-// }
-
 // 创建响应式变量multipleSelection，用于存储当前选中的数据行
 let multipleSelection = ref([])
 // 处理表格行选中状态变化的方法，val是当前选中的数据行数组
@@ -138,55 +93,6 @@ const statusHandle = async (flag, id) => {
     }
   })
 }
-// // 处理删除按钮点击事件
-// const handleDelete=(row)=> {
-//   ElMessageBox.confirm(
-//       '您确定要删除姓名为【' + row.name + '】的数据吗?',
-//       '危险操作',
-//       {
-//         confirmButtonText: '确定',
-//         cancelButtonText: '取消',
-//         type: 'warning',
-//       }
-//   )
-//       .then(() => {
-//         delrow(row)
-//         ElMessage({
-//           type: 'success',
-//           message: '完成删除！',
-//         })
-//       })
-//       .catch(() => {
-//         ElMessage({
-//           type: 'info',
-//           message: '取消删除!',
-//         })
-//       })
-// }
-// 删除多条数据
-// const handleDelList = () => {
-//   ElMessageBox.confirm(
-//       '您确定要删除选择的数据吗?',
-//       '危险操作',
-//       { confirmButtonText: '确定', cancelButtonText: '取消', type: 'warning' }
-//   ).then(() => {
-//     const userIds = multipleSelection.value;
-//     axios.delete('http://localhost:8080/user', { data: userIds })
-//         .then(response => {
-//           // 处理删除成功后的逻辑，例如重新加载数据
-//           getData();
-//           ElMessage({ type: 'success', message: '完成批量删除！' });
-//         })
-//         .catch(error => {
-//           console.error(error);
-//           ElMessage({ type: 'error', message: '删除失败！' });
-//         });
-//   }).catch(() => {
-//     ElMessage({ type: 'info', message: '取消删除!' });
-//   });
-// }
-
-
 </script>
 
 <template>
@@ -196,10 +102,6 @@ const statusHandle = async (flag, id) => {
 <!--      @keyup.enter绑定回车事件-->
       <el-input v-model="sname" placeholder="请输入姓名或用户名搜索" style="width: 250px" @keyup.enter="getData" :prefix-icon="Search">
       </el-input>
-<!--      <div class="tableLab">-->
-<!--        <el-button type="primary" :icon="Plus" @click="handleAdd" style="margin-left: 20px;">添加数据</el-button>-->
-<!--        <el-button type="danger" :icon="Delete" @click="handleDelList" v-if="multipleSelection.length>0">删除选中数据</el-button>-->
-<!--      </div>-->
       <div class="tableLab">
 <!--        <span class="span-btn delBut non" @click="deleteHandle('批量', null)">批量删除</span>-->
         <span class="span-btn blueBug non" @click="statusHandle('1')">批量封禁</span>
@@ -251,36 +153,6 @@ const statusHandle = async (flag, id) => {
         @size-change="handleSizeChange"
         @current-change="handleCurrentChange"
     />
-    <!--弹窗组件-->
-<!--    <el-dialog v-model="dialogFormVisible" :title="dialogTitle">-->
-<!--      <el-form :model="tableform">-->
-<!--        <el-form-item label="姓名" :label-width="100">-->
-<!--          <el-input v-model="tableform.name" autocomplete="off"/>-->
-<!--        </el-form-item>-->
-<!--        <el-form-item label="性别" :label-width="100">-->
-<!--          <el-radio-group v-model="tableform.gender">-->
-<!--            <el-radio label="男">男</el-radio>-->
-<!--            <el-radio label="女">女</el-radio>-->
-<!--          </el-radio-group>-->
-<!--        </el-form-item>-->
-<!--        <el-form-item label="出生年月" :label-width="100" style="width: 100%">-->
-<!--          <el-date-picker-->
-<!--              v-model="tableform.birth"-->
-<!--              type="date"-->
-<!--              placeholder="选择日期"-->
-<!--              format="YYYY-MM-DD"-->
-<!--              value-format="YYYY-MM-DD"-->
-<!--          />-->
-<!--        </el-form-item>-->
-<!--      </el-form>-->
-<!--      <template #footer>-->
-<!--    <span class="dialog-footer">-->
-<!--      <el-button type="primary" @click="dialogOk">-->
-<!--        确定-->
-<!--      </el-button>-->
-<!--    </span>-->
-<!--      </template>-->
-<!--    </el-dialog>-->
   </div>
   </div>
 </template>

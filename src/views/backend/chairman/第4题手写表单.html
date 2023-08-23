@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>注册表单</title>
+  <style>
+    /* 居中样式 */
+    body {
+      display: flex;
+      justify-content: center;
+    }
+
+    /*!* 表格样式 *!*/
+    /*table {*/
+    /*  margin-top: 50px;*/
+    /*  border-collapse: collapse;*/
+    /*  border: 1px solid #ccc;*/
+    /*}*/
+
+    /*th, td {*/
+    /*  border: 1px solid #ccc;*/
+    /*  padding: 10px;*/
+    /*}*/
+
+    /*th {*/
+    /*  width: 100px;*/
+    /*  text-align: left;*/
+    /*}*/
+
+    /*.submit-buttons {*/
+    /*  text-align: center;*/
+    /*  margin-top: 20px;*/
+    /*}*/
+  </style>
+</head>
+<body>
+<form action="#" method="POST">
+  <table>
+    <tr>
+      <th>用户名：</th>
+      <td><input type="text" name="username" placeholder="请输入用户名"></td>
+    </tr>
+    <tr>
+      <th>密码：</th>
+      <td><input type="password" name="password" placeholder="请输入密码"></td>
+    </tr>
+    <tr>
+      <th>性别：</th>
+      <td>
+        <label><input type="radio" name="gender" value="male">男</label>
+        <label><input type="radio" name="gender" value="female">女</label>
+      </td>
+    </tr>
+    <tr>
+      <th>兴趣：</th>
+      <td>
+        <label><input type="checkbox" name="interest[]" value="music">音乐</label>
+        <label><input type="checkbox" name="interest[]" value="sport">运动</label>
+        <label><input type="checkbox" name="interest[]" value="movie">电影</label>
+        <label><input type="checkbox" name="interest[]" value="reading">阅读</label>
+      </td>
+    </tr>
+    <tr>
+      <th>头像：</th>
+      <td><input type="file" name="avatar"></td>
+    </tr>
+  </table>
+  <div class="submit-buttons">
+    <input type="submit" value="注册">
+    <input type="reset" value="重填">
+  </div>
+</form>
+</body>
+</html>

@@ -26,6 +26,9 @@ import ApplyClubform from '@/views/front/home/components/apply_clubform.vue'
 import MyAnnou from '@/views/front/home/components/my_announ.vue'
 import ManageApplyforEvent from '@/views/backend/chairman/MangeApplyForEvent.vue'
 import EchartsComponent  from '@/views/front/home/components/Echarts.vue'
+import ManageUserforevent from '@/views/backend/chairman/ManageUserforevent.vue'
+import MangePulishNotice from '@/views/backend/chairman/MangePulishNotice.vue'
+import TopMangePulishNotice from '@/views/backend/top/MangePulishNotice.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -134,6 +137,18 @@ const router = createRouter({
         {
           path: '/manageevent',
           component: ManageApplyforEvent
+        },
+        {
+          path: '/manageuserforevent',
+          component: ManageUserforevent
+        },
+        {
+          path: '/manageNotice',
+          component: MangePulishNotice
+        },
+        {
+          path: '/topmanageNotice',
+          component: TopMangePulishNotice
         }
       ]
     }

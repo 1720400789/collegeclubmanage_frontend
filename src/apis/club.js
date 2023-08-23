@@ -102,3 +102,17 @@ export const saveApplyforJoinForm = (clubId, memberId, description) => {
         }
     })
 }
+
+export const userapplyforClubAPI = (memberId, applyName, clubDescription, birthTime, birthMan) => {
+    return request({
+        url: '/club/userapplyclub',
+        method: 'POST',
+        data: {
+            memberId,
+            applyName,
+            clubDescription,
+            birthTime,
+            birthMan
+        }
+    })
+}

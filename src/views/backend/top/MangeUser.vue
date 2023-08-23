@@ -97,7 +97,6 @@ const statusHandle = async (flag, id) => {
 
 const getPicture =  (name) => {
   return `http://localhost:8080/common/download?name=${name}`
-  // return "D:\\mydownload\\clubsys_transfer\\img\\" + name
 }
 
 </script>

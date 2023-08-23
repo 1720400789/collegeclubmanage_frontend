@@ -36,7 +36,7 @@ const filteredClubs = computed(() => {
     return clubs.value;
   } else {
     return clubs.value.filter(club =>
-        club.name.toLowerCase().includes(searchQuery.value.toLowerCase())
+        club.clubName.toLowerCase().includes(searchQuery.value.toLowerCase())
     )
   }
 })

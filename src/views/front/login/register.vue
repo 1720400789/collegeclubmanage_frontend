@@ -45,7 +45,7 @@ export default {
             ElMessage.success("注册成功！")
             this.$router.push({ path: '/' })
           }else {
-            ElMessage.warning(res.data.msg || "请求错误，请重试")
+            ElMessage.warning(res.msg || "请求错误，请重试")
           }
         }).catch(err => {
           console.log(err)

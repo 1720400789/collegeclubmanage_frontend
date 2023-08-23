@@ -42,18 +42,22 @@
 
 <script>
 import { reactive } from 'vue'
-import images01 from '@/assets/images/980.jpg'
-import images02 from '@/assets/images/skill.jpg'
+import images01 from '@/assets/images/p1.png'
+import images02 from '@/assets/images/p2.png'
+import images03 from '@/assets/images/p3.png'
+import images04 from '@/assets/images/p4.png'
+import images05 from '@/assets/images/p5.png'
+import images06 from '@/assets/images/p6.png'
 export default {
   setup() {
     // 图片的URL数组
     const imageUrls = reactive([
       images01,
       images02,
-      images01,
-      images02,
-      images01,
-      images02,
+      images03,
+      images04,
+      images05,
+      images06,
     ]);
 
     // 获取对应图片的URL
